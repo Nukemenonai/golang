@@ -6,15 +6,14 @@ import (
 )
 
 type Server struct {
-	port string 
+	port   string
 	router *Router
 }
 
-
 //se devuelve el puntero al servidor porque no queremos una copia sino un servidor que pueda ser modificado
-func NewServer(port string) *Server{
+func NewServer(port string) *Server {
 	return &Server{
-		port: port,
+		port:   port,
 		router: NewRouter(),
 	}
 
