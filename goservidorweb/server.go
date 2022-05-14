@@ -6,18 +6,21 @@ import (
 )
 
 type Server struct {
-	port string 
+	port   string
 	router *Router
 }
 
-
 //se devuelve el puntero al servidor porque no queremos una copia sino un servidor que pueda ser modificado
-func NewServer(port string) *Server{
+func NewServer(port string) *Server {
 	return &Server{
-		port: port,
+		port:   port,
 		router: NewRouter(),
 	}
 
+}
+
+func (s *Server) Handle(path string, handler http.HandlerFunc) {
+	s.router.rules[path] = handler
 }
 
 func (s *Server) Listen() error {
